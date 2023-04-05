@@ -70,7 +70,7 @@ class PreProcessing:
         encoded_columns = onehotencoder.fit_transform(self.x_block[string_objects.columns]).toarray()
 
         # Create a dataframe with encoded columns
-        onehot_df = pandas.DataFrame(encoded_columns, columns=onehotencoder.get_feature_names(string_objects.columns))
+        onehot_df = pandas.DataFrame(encoded_columns, columns=onehotencoder.get_feature_names_out(string_objects.columns))
 
         # Drop the still categorical columns from the original dataframe
         self.x_block.drop(string_objects.columns, axis=1, inplace=True)
