@@ -113,6 +113,9 @@ nan_columns = self.main_frame.columns[self.main_frame.isna().any()].tolist()
         # Concatenate the Encoded Columns in the original frame
         self.x_block = pandas.concat([self.x_block, onehot_df], axis=1)
 ```
+- We have also tried to visualize the correlation amongst the variables to determine which ones are the most important and will contribute the most to our model
+![Correlation HeatMap](https://github.com/srinivasabharath22/simple_gender_classification/blob/main/Report%20Images/Correlation%20Heatmap.png)
+
 
 ### Run Code
 - Clone the code
