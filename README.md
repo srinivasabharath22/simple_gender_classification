@@ -114,6 +114,17 @@ nan_columns = self.main_frame.columns[self.main_frame.isna().any()].tolist()
         self.x_block = pandas.concat([self.x_block, onehot_df], axis=1)
 ```
 
+### Run Code
+- Clone the code
+```commandline
+git clone git@github.com:srinivasabharath22/simple_gender_classification.git
+cd simple_gender_classification
+```
+- Run the runner.py file
+```commandline
+python3 runner.py
+```
+
 ### References
 [1]. https://www.tableau.com/ [Plots to best describe our data]
 
