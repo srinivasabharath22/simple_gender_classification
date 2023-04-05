@@ -75,9 +75,8 @@ class Visualizer(PreProcessing):
 
     def corr_heatmap(self):
         # Create a Correlation heatmap for float values to see the importance of certain variables
-        sb.heatmap(self.main_frame.corr(), cmap="YlGnBu", annot=True)
-        plt.savefig('./Report Images/Correlation Heatmap.png')
-        plt.title('HeatMap showing correlation amongst variables')
+        sb.heatmap(self.main_frame.corr(), cmap="YlGnBu", annot=True).set(title='HeatMap showing correlation amongst variables')
+        plt.savefig('./Report Images/Corr Heatmap.png')
 
     def occupational_divide(self):
         # Get Occupation and corresponding numbers for both classes
