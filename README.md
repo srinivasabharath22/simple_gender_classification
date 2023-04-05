@@ -73,16 +73,16 @@ nan_columns = self.main_frame.columns[self.main_frame.isna().any()].tolist()
 - Since they are categorical variables, there is a possibility of a number of categories being available, hence we have used __stacked bar graphs__ to show all the categories effectively for both the classes
 
 #### __Occupations__
-![Occupational Comparisons](Report Images/Occupational Divide.png)
+![Occupational Comparisons](https://github.com/srinivasabharath22/simple_gender_classification/blob/main/Report%20Images/Occupational%20Divide.png)
 
 #### __Education__
-![Educational Comparisons](Report Images/Educational Divide.png)
+![Educational Comparisons](https://github.com/srinivasabharath22/simple_gender_classification/blob/main/Report%20Images/Educational%20Divide.png)
 
 #### __Marital Status__
-![Educational Comparisons](Report Images/Marital Status Divide.png)
+![Educational Comparisons](https://github.com/srinivasabharath22/simple_gender_classification/blob/main/Report%20Images/Marital%20Status%20Divide.png)
 
 #### __Favorite Color__
-![Favorite Colors Comparison](Report Images/Favorite Colors.png)
+![Favorite Colors Comparison](https://github.com/srinivasabharath22/simple_gender_classification/blob/main/Report%20Images/Favorite%20Colors.png)
 
 ### Final Data-PreProcessing
 
