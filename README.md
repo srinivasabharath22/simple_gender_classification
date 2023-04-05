@@ -57,16 +57,16 @@ nan_columns = self.main_frame.columns[self.main_frame.isna().any()].tolist()
 - This will show where the majority of our data points are with each class and also help us determine if there are any significant outliers. __[1]__
 
 #### __Age__
-![Age Comparison](Report Images/Age Comparisons.png)
+![Age Comparison](https://github.com/srinivasabharath22/simple_gender_classification/blob/main/Report%20Images/Age%20Comparisons.png)
 
 #### __Height__
-![Height Comparison](Report Images/Height Comparisons.png)
+![Height Comparison](https://github.com/srinivasabharath22/simple_gender_classification/blob/main/Report%20Images/Height%20Comparisons.png)
 
 #### __Income__
-![Income Comparison](Report Images/Income Comparisons.png)
+![Income Comparison](https://github.com/srinivasabharath22/simple_gender_classification/blob/main/Report%20Images/Income%20Comparisons.png)
 
 #### __Weight__
-![Weight Comparison](Report Images/Weight Comparisons.png)
+![Weight Comparison](https://github.com/srinivasabharath22/simple_gender_classification/blob/main/Report%20Images/Weight%20Comparisons.png)
 
 ### Statistical Divide between classes (by categories)
 - There are other variables except the numerical ones that also form a significant part of this dataset
