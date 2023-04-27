@@ -25,6 +25,15 @@ class Visualizer(PreProcessing):
         self.width, self.height = plt.figaspect(1.4)
         self.fig = plt.figure(figsize=(self.width, self.height), dpi=1000, tight_layout=False)
 
+    def label_counts(self):
+        val_counts = self.main_frame[' Gender'].value_counts()
+        val_counts.plot(kind='bar')
+        plt.title('Label Counts')
+        plt.xlabel('Gender')
+        plt.xlabel('Count')
+        plt.savefig('./Report Images/Label Counts.png')
+        print('Break')
+
     def age_comparison_plot(self):
         # Creating a Box_whisker plot for Age Comparison amongst classes with suitable changes to plot attributes
         self.main_frame.boxplot(column=' Age', by=' Gender', color='blue',
@@ -75,7 +84,15 @@ class Visualizer(PreProcessing):
 
     def corr_heatmap(self):
         # Create a Correlation heatmap for float values to see the importance of certain variables
-        sb.heatmap(self.main_frame.corr(), cmap="YlGnBu", annot=True).set(title='HeatMap showing correlation amongst variables')
+
+        num_cols = self.main_frame.select_dtypes(include=['int64', 'float64']).columns
+        df_num = self.main_frame[num_cols]
+        df_label = self.main_frame[' Gender']
+        df_label_encoded = pandas.Series(pandas.factorize(df_label)[0], name='Gender')
+
+        temp_corr_frame = pandas.concat([df_num, df_label_encoded], axis=1)
+        corr_matrix = temp_corr_frame.corr()
+        sb.heatmap(corr_matrix, cmap='Blues', annot=True)
         plt.savefig('./Report Images/Corr Heatmap.png')
 
     def occupational_divide(self):

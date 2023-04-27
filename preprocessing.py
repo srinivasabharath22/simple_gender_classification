@@ -1,6 +1,9 @@
 import pandas
 import re
-from sklearn.preprocessing import OneHotEncoder
+import numpy as np
+from sklearn.decomposition import PCA
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder, StandardScaler, LabelEncoder
 
 
 class PreProcessing:
@@ -9,6 +12,12 @@ class PreProcessing:
         self.x_block = None
         self.y_block = None
         self.x_train, self.x_test, self.y_train, self.y_test = None, None, None, None
+        self.scaler = None
+        self.labelEncoder = None
+        self.scores = pandas.DataFrame()
+        self.pca = None
+        self.pca_on = None
+        self.all_numeric_columns = None
 
     def set_data_frame(self):
         # Set Main Frame after reading csv
@@ -63,6 +72,8 @@ class PreProcessing:
         # Initialise Encoder
         onehotencoder = OneHotEncoder()
 
+        self.all_numeric_columns = self.main_frame.select_dtypes(include=['int', 'float']).columns
+
         # Get all the Categorical Columns
         string_objects = self.x_block.select_dtypes(['object'])
 
@@ -77,3 +88,35 @@ class PreProcessing:
 
         # Concatenate the Encoded Columns in the original frame
         self.x_block = pandas.concat([self.x_block, onehot_df], axis=1)
+
+    def test_train_split(self):
+        """
+        - Splits training-testing data using sklearn's library
+        :return: None
+        """
+        self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x_block, self.y_block,
+                                                                                random_state=42, test_size=0.30)
+        self.y_train = np.ravel(self.y_train)
+        self.y_test = np.ravel(self.y_test)
+
+    def standard_normalization(self):
+        """
+            - Mean centers train data
+            - Unit scale train data
+            - use the transformation scale on the test data
+            :return: None
+        """
+        int_objects_train = self.x_train[self.all_numeric_columns]
+        self.scaler = StandardScaler()
+        self.x_train[int_objects_train.columns] = self.scaler.fit_transform(self.x_train[int_objects_train.columns])
+        int_objects_test = self.x_test[self.all_numeric_columns]
+        self.x_test[int_objects_test.columns] = self.scaler.transform(self.x_test[int_objects_test.columns])
+
+    def label_encoding(self):
+        self.labelEncoder = LabelEncoder()
+        self.y_train = self.labelEncoder.fit_transform(self.y_train)
+        self.y_test = self.labelEncoder.transform(self.y_test)
+
+    def create_score_space(self):
+        self.pca = PCA(n_components=4)
+        self.scores = self.pca.fit_transform(self.x_train)
